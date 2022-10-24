@@ -5,19 +5,11 @@ using UnityEngine;
 public class MapReader : MonoBehaviour
 {
 
-    /*[HideInInspector]
-    public Dictionary<ulong, OSMnode> nodes;
-
-    [HideInInspector]
-    public List<OSMway> ways;
-
-    [HideInInspector]
-    public OSMbounds bounds;*/
-
     public class MapData{//OMS MAP DATA
         public OSMbounds bounds{get;set;}
         public Dictionary<ulong, OSMnode> nodes{get;set;}
         public List<OSMway> ways{get;set;}
+        public List<OSMrelation> relations { get; set; }
     }
 
     //this is a map data - 
@@ -73,8 +65,19 @@ public class MapReader : MonoBehaviour
             ways.Add(way);
         }
         return ways;
-
     }
+
+    /*List<OSMrelation> SetRelations(XmlNodeList xmlNodeList)
+    {
+        List<OSMrelation> relations = new List<OSMrelation>();
+
+        foreach (XmlNode node in xmlNodeList)
+        {
+            OSMrelation rel = new OSMrelation(node);
+            relations.Add(rel);
+        }
+        return relations;
+    }*/
 
     
 

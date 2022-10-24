@@ -53,16 +53,25 @@ class RoadMaker : MonoBehaviour
 
             MeshFilter mf = go.AddComponent<MeshFilter>();
             MeshRenderer mr = go.AddComponent<MeshRenderer>();
-            
+            MeshCollider mc = go.AddComponent<MeshCollider>();
+
+            float this_road_w = 0.0f;
             //classfy highway and assgin each material
-            if(roadClassification.MainHighwayValues.Contains(way.Highway)){
+            if (roadClassification.MainHighwayValues.Contains(way.Highway)){
                 mr.material = roadMaterial.MainHighway;
-            }else if(roadClassification.SubHighwayValues.Contains(way.Highway)){
+                this_road_w = set.road_w * 3;
+            }
+            else if(roadClassification.SubHighwayValues.Contains(way.Highway)){
                 mr.material = roadMaterial.SubHighway;
-            }else if(roadClassification.PathHighwayValues.Contains(way.Highway)){
+                this_road_w = set.road_w * 2;
+            }
+            else if(roadClassification.PathHighwayValues.Contains(way.Highway)){
                 mr.material = roadMaterial.PathHighway;
-            }else{
+                this_road_w = set.road_w * 1;
+            }
+            else{
                 mr.material = roadMaterial.ElseHighway;
+                this_road_w = set.road_w * 1;
             }
             
 
@@ -91,7 +100,7 @@ class RoadMaker : MonoBehaviour
                 s2.x*=set.mag_h; s2.z*=set.mag_h;
                 
                 Vector3 diff = (s2 - s1).normalized;
-                var cross = Vector3.Cross(diff, Vector3.up) * set.road_w; // width of road
+                var cross = Vector3.Cross(diff, Vector3.up) * this_road_w; // width of road
 
                 /*
                 Shape: 
@@ -204,6 +213,8 @@ class RoadMaker : MonoBehaviour
             //cast shadow off
             mr.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
             go.isStatic=true;
+
+            mc.sharedMesh = mf.mesh;
 
             yield return null;
         }

@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
-public class OSMrelation : MonoBehaviour
+public class OSMrelation : OSM_Func
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ulong ID { get; private set; }
+    public bool Visible { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    public OSMrelation(XmlNode node)
     {
-        
+
     }
 }

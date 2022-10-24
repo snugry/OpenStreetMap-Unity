@@ -13,6 +13,7 @@ public class OSMway: OSM_Func
     public string Highway {get; private set; }
     public float Height {get; private set; }
     public string Leisure{get;private set;}
+    public string Waterway { get; private set; }
     public string Nature{get;private set;}
     public string Name{get; private set;}
 
@@ -70,13 +71,18 @@ public class OSMway: OSM_Func
             }
             else if (key == "highway")
             {
-                Highway = GetAttribute<string>("v", t.Attributes);;
+                Highway = GetAttribute<string>("v", t.Attributes);
             }
             else if (key == "leisure")
             {
-                Leisure = GetAttribute<string>("v", t.Attributes);;
+                Leisure = GetAttribute<string>("v", t.Attributes);
             }
-            else{//if not above, debug tag k(key)
+            else if (key == "waterway")
+            {
+                Waterway = GetAttribute<string>("v", t.Attributes);
+            }
+            else
+            {//if not above, debug tag k(key)
                 //Debug.Log(key+" is not expected");
             }
 

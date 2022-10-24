@@ -13,6 +13,7 @@ public class MapController : MonoBehaviour
     BuildingMaker buildingMaker;
     RoadMaker roadMaker;
     AreaMaker areaMaker;
+    NatureMaker natureMaker;
 
 
     MapSettings set;
@@ -27,7 +28,8 @@ public class MapController : MonoBehaviour
         buildingMaker=GetComponent<BuildingMaker>();
         roadMaker=GetComponent<RoadMaker>();
         areaMaker=GetComponent<AreaMaker>();
-        set=GetComponent<MapSettings>();
+        natureMaker = GetComponent<NatureMaker>();
+        set =GetComponent<MapSettings>();
     }
 
     void Start()
@@ -49,7 +51,8 @@ public class MapController : MonoBehaviour
         StartCoroutine(buildingMaker.Make(map,set,obj,Vector3.up*0.2f));
         StartCoroutine(roadMaker.Make(map,set,obj,Vector3.up*0.1f));
         StartCoroutine(areaMaker.Make(map,set,obj,Vector3.zero));
-        
+        StartCoroutine(natureMaker.Make(map, set, obj, Vector3.zero));
+
         //ShowMapData
         //Debug.Log("\nLongitude: " + map.mapData.bounds.MinLon + " ~ " + map.mapData.bounds.MaxLon + " , Latitude: " + map.mapData.bounds.MinLat + " ~ " + map.mapData.bounds.MaxLat);
         //Debug.Log("Centre: " + map.mapData.bounds.Centre);

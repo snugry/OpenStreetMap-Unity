@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 
@@ -25,7 +26,7 @@ public class BuildingMaker : MonoBehaviour
             Vector3 localOrigin = GetCentre(map,way);
             Vector3 TransformPos=localOrigin - map.mapData.bounds.Centre;
             go.transform.parent=buildingObj.transform;
-            go.name=way.Name;
+            go.name= string.IsNullOrEmpty(way.Name) ? "Empty" : way.Name;
 
             //magnitude horizontal 
             TransformPos.x*=set.mag_h; TransformPos.z*=set.mag_h;
@@ -48,7 +49,9 @@ public class BuildingMaker : MonoBehaviour
                 OSMnode p2 = map.mapData.nodes[way.NodeIDs[i]];
 
                 Vector3 v1 = new Vector3(p1.Longitude,0,p1.Latitude) - localOrigin;
+                Debug.Log(p1.Longitude + " - " + p1.Latitude);
                 Vector3 v2 = new Vector3(p2.Longitude,0,p2.Latitude) - localOrigin;
+                Debug.Log(p2.Longitude + " - " + p2.Latitude);
 
                 //magnitude horizontal  
                 v1.x*=set.mag_h; v1.z*=set.mag_h;
