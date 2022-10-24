@@ -274,6 +274,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 3}
+      propertyPath: m_TurnSpeed
+      value: 4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 3}
+      propertyPath: m_LockCursor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 3}
+      propertyPath: m_AutoTargetPlayer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 3}
 --- !u!1 &705507993
@@ -511,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf660869e30f14d72ba810f5803c6147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  building: {fileID: 2100000, guid: 06e9932f298ce47a4b4656d4c7853732, type: 2}
+  building: {fileID: 2100000, guid: f1bc741ea0e69a241896582ddb633d55, type: 2}
 --- !u!114 &1412397921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,3 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaterMaterial: {fileID: 2100000, guid: 52b7d70b1de7c4ce09662b77c14d9fda, type: 2}
+  WetlandMaterial: {fileID: 2100000, guid: 8fd22aa40d0f04fecaac8003794839ac, type: 2}
+  WoodMaterial: {fileID: 2100000, guid: 8fd22aa40d0f04fecaac8003794839ac, type: 2}
+  ScrubMaterial: {fileID: 2100000, guid: 8fd22aa40d0f04fecaac8003794839ac, type: 2}
+  TreePrefab: {fileID: 100016, guid: 469edab27ab6d004d84af2c4a851bd7f, type: 3}

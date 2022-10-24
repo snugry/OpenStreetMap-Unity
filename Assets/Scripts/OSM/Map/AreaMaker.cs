@@ -47,7 +47,12 @@ public class AreaMaker : MonoBehaviour
         areaObj.transform.parent=parentObj.transform;
         areaObj.name="Areas";
 
-        foreach (var way in map.mapData.ways.FindAll((w) => { return w.Leisure!=null && w.NodeIDs.Count > 1 && !w.IsBuilding; }))
+        var leisures = map.mapData.ways.FindAll((w) => { return w.Leisure != null && w.NodeIDs.Count > 1 && !w.IsBuilding; });
+        var landuses = map.mapData.ways.FindAll((w) => { return w.Landuse != null && w.NodeIDs.Count > 1 && !w.IsBuilding && w.Leisure == null; });
+        var allWays = leisures;
+        allWays.AddRange(landuses);
+
+        foreach (var way in allWays)
         {
             GameObject go = new GameObject();
             Vector3 localOrigin = GetCentre(map,way);
@@ -58,11 +63,8 @@ public class AreaMaker : MonoBehaviour
             //magnitude horizontal 
             TransformPos.x*=set.mag_h; TransformPos.z*=set.mag_h;
 
-            
-
             MeshFilter mf = go.AddComponent<MeshFilter>();
             MeshRenderer mr = go.AddComponent<MeshRenderer>();
-
 
             //classfy highway and assgin each material,  and ajust height
             if(leisureClassification.LookSandValues.Contains(way.Leisure)){

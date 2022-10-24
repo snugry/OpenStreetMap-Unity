@@ -14,7 +14,8 @@ public class OSMway: OSM_Func
     public float Height {get; private set; }
     public string Leisure{get;private set;}
     public string Waterway { get; private set; }
-    public string Nature{get;private set;}
+    public string Natural{ get; private set; }
+    public string Landuse { get; private set; }
     public string Name{get; private set;}
 
 
@@ -80,6 +81,14 @@ public class OSMway: OSM_Func
             else if (key == "waterway")
             {
                 Waterway = GetAttribute<string>("v", t.Attributes);
+            }
+            else if (key == "natural")
+            {
+                Natural = GetAttribute<string>("v", t.Attributes);
+            }
+            else if (key == "landuse")
+            {
+                Landuse = GetAttribute<string>("v", t.Attributes);
             }
             else
             {//if not above, debug tag k(key)

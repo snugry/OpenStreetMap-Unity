@@ -6,6 +6,9 @@ using UnityEngine;
 public class NatureMaker : MonoBehaviour
 {
     public Material WaterMaterial;
+    public Material WetlandMaterial;
+    public Material WoodMaterial;
+    public Material ScrubMaterial;
 
     public GameObject TreePrefab;
 
@@ -146,7 +149,6 @@ public class NatureMaker : MonoBehaviour
                 idx2 = count - 3; //v2_old
                 idx1 = count - 4; //v1_old
 
-
                 indices.Add(idx1); indices.Add(idx2); indices.Add(idx3);  // first triangle v1, v3, v2 //one side
                 indices.Add(idx3); indices.Add(idx2); indices.Add(idx4); // second triangle v3, v4, v2 //one side
                                                                          /*indices.Add(idx1); indices.Add(idx3); indices.Add(idx2); // third triangle v2, v3, v1 //the other side 
@@ -189,6 +191,100 @@ public class NatureMaker : MonoBehaviour
 
             yield return null;
         }
+
+        //add natural areas
+        foreach (var way in map.mapData.ways.FindAll((w) => { return w.Natural != null && w.NodeIDs.Count > 1 && !w.IsBuilding; }))
+        {
+            GameObject go = new GameObject();
+            Vector3 localOrigin = GetCentre(map, way);
+            Vector3 TransformPos = localOrigin - map.mapData.bounds.Centre;
+            go.transform.parent = natureObj.transform;
+            go.name = way.Name;
+
+            //magnitude horizontal 
+            TransformPos.x *= set.mag_h; TransformPos.z *= set.mag_h;
+
+            MeshFilter mf = go.AddComponent<MeshFilter>();
+            MeshRenderer mr = go.AddComponent<MeshRenderer>();
+
+            if(way.Natural == "water")
+            {
+                mr.material = WaterMaterial;
+            }
+            else if (way.Natural == "wetland")
+            {
+                mr.material = WetlandMaterial;
+            }
+            else if (way.Natural == "wood")
+            {
+                mr.material = WoodMaterial;
+            }
+            else if (way.Natural == "scrub")
+            {
+                mr.material = ScrubMaterial;
+            }
+            else
+            {
+                continue;
+            }
+            
+            TransformPos.y = 0.0f;
+
+            go.transform.position = TransformPos;
+
+            List<Vector3> vectors = new List<Vector3>();
+            List<Vector3> normals = new List<Vector3>();
+            List<int> indices = new List<int>();
+            List<Vector2> uvs = new List<Vector2>();
+
+            OSMnode p0 = map.mapData.nodes[way.NodeIDs[0]];//first point of all triangle
+            Vector3 v0 = new Vector3(p0.Longitude, 0, p0.Latitude) - localOrigin;
+            v0.x *= set.mag_h; v0.z *= set.mag_h;
+            vectors.Add(v0); normals.Add(-Vector3.forward); uvs.Add(new Vector2(1, 0));
+            int idx0 = 0;
+            for (int i = 2; i < way.NodeIDs.Count; i++)
+            {
+                OSMnode p1 = map.mapData.nodes[way.NodeIDs[i - 1]];
+                OSMnode p2 = map.mapData.nodes[way.NodeIDs[i]];
+
+                Vector3 v1 = new Vector3(p1.Longitude, 0, p1.Latitude) - localOrigin;
+                Vector3 v2 = new Vector3(p2.Longitude, 0, p2.Latitude) - localOrigin;
+
+                //magnitude horizontal  
+                v1.x *= set.mag_h; v1.z *= set.mag_h;
+                v2.x *= set.mag_h; v2.z *= set.mag_h;
+
+                vectors.Add(v1);
+                vectors.Add(v2);
+                normals.Add(-Vector3.forward);
+                normals.Add(-Vector3.forward);
+
+                // index values
+                int idx1, idx2;
+                int count = vectors.Count;
+                idx2 = count - 1;
+                idx1 = count - 2;
+
+                indices.Add(idx0); indices.Add(idx1); indices.Add(idx2); // first triangle v1, v3, v2 //one side
+                indices.Add(idx2); indices.Add(idx1); indices.Add(idx0); // second triangle v2, v3, v1 //the other side  
+
+                uvs.Add(new Vector2(v1.x - v0.x, v1.z - v0.z) / 8); uvs.Add(new Vector2(v2.x - v0.x, v2.z - v0.z) / 8);
+
+            }
+
+            mf.mesh.vertices = vectors.ToArray();
+            mf.mesh.normals = normals.ToArray();
+            mf.mesh.triangles = indices.ToArray();
+            mf.mesh.uv = uvs.ToArray();
+
+            //cast shadow off
+            mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            go.isStatic = true;
+
+            yield return null;
+        }
+
+        //add trees
         foreach (var nd in map.mapData.nodes.Values.ToList().FindAll((n) => { return n.isTree == true; }))
         {
             Vector3 treePos = new Vector3(nd.Longitude, 0, nd.Latitude);
