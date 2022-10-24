@@ -1,4 +1,14 @@
 # what is this?
+This is based on SnakeSneakS take on OpenStreetMap to unity generating
+
+Added to the original Version:
+1. Generate rivers, streams etc.
+2. Generate trees
+(WIP)
+lakes, woods, agriculture, meadows, better houses
+
+
+SnakeSneakS original Readme:
 I tried to create 3d town with using [OpenStreetMap](https://wiki.openstreetmap.org/wiki/Main_Page)
 
 ![one image](8F5308E0-978E-42EE-BF78-81F121E8EFD1_1_201_a.jpeg)
