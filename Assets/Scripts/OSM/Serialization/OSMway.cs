@@ -22,7 +22,7 @@ public class OSMway: OSM_Func
     public OSMway(XmlNode node)
     {
         NodeIDs = new List<ulong>();
-        Height = 10.0f; // ! Originally 3.0f (need to fix the building height - building:levels not being recognized)
+        Height = -1.0f; // ! Originally 3.0f (need to fix the building height - building:levels not being recognized)
         ID = GetAttribute<ulong>("id", node.Attributes);//wayID
         Visible = GetAttribute<bool>("visible", node.Attributes);
 
@@ -65,10 +65,11 @@ public class OSMway: OSM_Func
                 //Debug.Log(t.Attributes["v"].Value);
                 IsBuilding = true;
                 Height = GetAttribute<float>("v", t.Attributes);//If number is "全角"-japanese character, doesn't go well :(
+                //Debug.Log(string.Format("Building Height: {0}", Height));
             }
             else if (key == "building")
             {
-                IsBuilding = GetAttribute<string>("v", t.Attributes) == "yes";
+                IsBuilding = true;
             }
             else if (key == "highway")
             {

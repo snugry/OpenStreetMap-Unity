@@ -152,7 +152,7 @@ public class AreaMaker : MonoBehaviour
             lon+=map.mapData.nodes[id].Longitude;
         }
 
-        Vector3 total = new Vector3(lon,0,lat);
+        Vector3 total = new Vector3(lon,-0.1f,lat);
 
         return total / way.NodeIDs.Count;
     }

@@ -42,6 +42,7 @@ public class BuildingMaker : MonoBehaviour
             List<Vector3> normals = new List<Vector3>();
             List<int> indices = new List<int>();
             List<Vector2> uvs = new List<Vector2>();
+            float _height = (way.Height < 0) ? Random.Range(1.0f, 8.0f) : way.Height;
 
             for (int i = 1; i < way.NodeIDs.Count; i++)
             {
@@ -49,16 +50,17 @@ public class BuildingMaker : MonoBehaviour
                 OSMnode p2 = map.mapData.nodes[way.NodeIDs[i]];
 
                 Vector3 v1 = new Vector3(p1.Longitude,0,p1.Latitude) - localOrigin;
-                Debug.Log(p1.Longitude + " - " + p1.Latitude);
+                //Debug.Log(p1.Longitude + " - " + p1.Latitude);
                 Vector3 v2 = new Vector3(p2.Longitude,0,p2.Latitude) - localOrigin;
-                Debug.Log(p2.Longitude + " - " + p2.Latitude);
+                //Debug.Log(p2.Longitude + " - " + p2.Latitude);
 
                 //magnitude horizontal  
                 v1.x*=set.mag_h; v1.z*=set.mag_h;
                 v2.x*=set.mag_h; v2.z*=set.mag_h;
 
-                Vector3 v3 = v1 + new Vector3(0, way.Height, 0);
-                Vector3 v4 = v2 + new Vector3(0, way.Height, 0);
+                
+                Vector3 v3 = v1 + new Vector3(0, _height, 0);
+                Vector3 v4 = v2 + new Vector3(0, _height, 0);
 
                 //magnitude vertical 
                 v3.y*=set.mag_v; 

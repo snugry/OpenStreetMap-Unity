@@ -381,6 +381,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &757075318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757075320}
+  - component: {fileID: 757075319}
+  m_Layer: 0
+  m_Name: CreateTerrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &757075319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757075318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a10c87d30760164c80fb5581a369fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainTex: {fileID: 2800000, guid: c6e0767b1f8c34890ac245217f4b9731, type: 3}
+  minLat: 48.5168
+  maxLat: 48.5424
+  minLon: 10.8156
+  maxLon: 10.8829
+  step: 10
+  widthX: 0
+  widthZ: 0
+--- !u!4 &757075320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757075318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.610727, y: 0.4789884, z: -36.486885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &851206752
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -565,7 +616,7 @@ MonoBehaviour:
     SandMaterial: {fileID: 2100000, guid: 5234dab56579f4e19a77e18ff04a3df3, type: 2}
     WaterMaterial: {fileID: 2100000, guid: 087887a59ff1743ffa98c01950cbe608, type: 2}
     GrassMaterial: {fileID: 2100000, guid: e025f4abaebd441988313a5690836497, type: 2}
-    ElseMaterial: {fileID: 2100000, guid: b17fdf6d3e056446886616aabdf25762, type: 2}
+    ElseMaterial: {fileID: 2100000, guid: 5234dab56579f4e19a77e18ff04a3df3, type: 2}
 --- !u!114 &1412397924
 MonoBehaviour:
   m_ObjectHideFlags: 0
