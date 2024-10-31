@@ -26,7 +26,7 @@ public class BuildingMaker : MonoBehaviour
             Vector3 localOrigin = GetCentre(map,way);
             Vector3 TransformPos=localOrigin - map.mapData.bounds.Centre;
             go.transform.parent=buildingObj.transform;
-            go.name= string.IsNullOrEmpty(way.Name) ? "Empty" : way.Name;
+            go.name= string.IsNullOrEmpty(way.Name) ? way.Address : way.Name;
 
             //magnitude horizontal 
             TransformPos.x*=set.mag_h; TransformPos.z*=set.mag_h;

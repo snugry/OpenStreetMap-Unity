@@ -397,7 +397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &757075319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,8 +415,10 @@ MonoBehaviour:
   maxLat: 48.5424
   minLon: 10.8156
   maxLon: 10.8829
-  step: 10
+  step: 33
+  width_realX: 0
   widthX: 0
+  width_realZ: 0
   widthZ: 0
 --- !u!4 &757075320
 Transform:
@@ -634,3 +636,56 @@ MonoBehaviour:
   WoodMaterial: {fileID: 2100000, guid: 8fd22aa40d0f04fecaac8003794839ac, type: 2}
   ScrubMaterial: {fileID: 2100000, guid: 8fd22aa40d0f04fecaac8003794839ac, type: 2}
   TreePrefab: {fileID: 100016, guid: 469edab27ab6d004d84af2c4a851bd7f, type: 3}
+--- !u!1 &1868895715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1868895717}
+  - component: {fileID: 1868895716}
+  m_Layer: 0
+  m_Name: CreateTerrainTestMountain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1868895716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868895715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a10c87d30760164c80fb5581a369fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainTex: {fileID: 2800000, guid: c6e0767b1f8c34890ac245217f4b9731, type: 3}
+  minLat: 47.546
+  maxLat: 47.567
+  minLon: 10.717
+  maxLon: 10.764
+  step: 33
+  width_realX: 0
+  widthX: 0
+  width_realZ: 0
+  widthZ: 0
+--- !u!4 &1868895717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868895715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.610727, y: 0.4789884, z: -36.486885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

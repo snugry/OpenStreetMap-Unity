@@ -17,6 +17,11 @@ public class OSMway: OSM_Func
     public string Natural{ get; private set; }
     public string Landuse { get; private set; }
     public string Name{get; private set;}
+    public string Address { get => _city + " - " + _street + " " + _houseNumber; }
+
+    private string _houseNumber = "";
+    private string _street = "";
+    private string _city = "";
 
 
     public OSMway(XmlNode node)
@@ -90,6 +95,18 @@ public class OSMway: OSM_Func
             else if (key == "landuse")
             {
                 Landuse = GetAttribute<string>("v", t.Attributes);
+            }
+            else if (key == "addr:city")
+            {
+                _city = GetAttribute<string>("v", t.Attributes);
+            }
+            else if (key == "addr:housenumber")
+            {
+                _houseNumber = GetAttribute<string>("v", t.Attributes);
+            }
+            else if (key == "addr:street")
+            {
+                _street = GetAttribute<string>("v", t.Attributes);
             }
             else
             {//if not above, debug tag k(key)
